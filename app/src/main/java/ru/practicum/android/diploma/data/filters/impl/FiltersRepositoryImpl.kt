@@ -27,7 +27,7 @@ class FiltersRepositoryImpl(private val networkClient: NetworkClient) : FiltersR
             ResponseType.SEARCH_SUCCESS -> {
                 val data = (response as CountriesResponseDto).countries
                     .filter { it.parentId == null }
-                    .sortedBy { if (it.id == ResponseType.ID_OTHER_REGIONS.name) 1 else 0 }
+                    .sortedBy { if (it.id == ResponseType.ID_OTHER_REGIONS.code.toString()) 1 else 0 }
 
                 emit(Resource.Success(data.map { it.toDomain() }))
             }

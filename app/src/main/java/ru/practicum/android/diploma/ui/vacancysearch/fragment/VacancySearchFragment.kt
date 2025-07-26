@@ -241,7 +241,6 @@ class VacancySearchFragment : Fragment(), VacancyItemAdapter.Listener {
 
     override fun onResume() {
         super.onResume()
-        // Проверяем фильтры при каждом возвращении на экран
         searchViewModel.checkActiveFilters()
     }
 }

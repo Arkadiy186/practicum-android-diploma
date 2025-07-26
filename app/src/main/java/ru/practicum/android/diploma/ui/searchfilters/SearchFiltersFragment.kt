@@ -137,7 +137,9 @@ class SearchFiltersFragment : Fragment() {
 
         binding.materialCheckbox.isChecked = state.checkboxWithoutSalary ?: false
 
-        updateActionButtonVisibility()
+        viewModel.getFiltersParametersScreen.observe(viewLifecycleOwner) { filters ->
+            updateActionButtonVisibility(filters ?: FilterParameters())
+        }
 
         val workplaceText = listOfNotNull(country, region)
             .filter { it.isNotBlank() }
@@ -162,8 +164,7 @@ class SearchFiltersFragment : Fragment() {
         binding.topHint.setTextColor(topHintColor)
     }
 
-    private fun updateActionButtonVisibility() {
-        val filters = viewModel.getFiltersParametersScreen.value ?: FilterParameters()
+    private fun updateActionButtonVisibility(filters: FilterParameters) {
 
         val isWorkplaceEmpty = filters.countryName.isNullOrBlank() && filters.regionName.isNullOrBlank()
         val isIndustryEmpty = filters.industryName.isNullOrBlank()

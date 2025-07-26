@@ -133,7 +133,6 @@ class RetrofitNetworkClient(
         return AreaWithSubareasDto(id = countryId, name = "Cities", areas = resultAreas)
     }
 
-    // Общий метод для обработки регионов и городов
     private fun processRegions(
         regions: List<AreasResponseDto>,
         countryName: String
